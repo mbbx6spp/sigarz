@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+declare -r name="sigarz"
+declare -r bin_dir=$(dirname "$0")
+declare -r bin_lib_dir="${bin_dir}/lib"
+declare -r env_file="${bin_lib_dir}/${name}.env"
+declare -r lib_ext_dir="${bin_dir}/../lib/ext"
+
+if [ -d "${lib_ext_dir}" ]; then
+  mkdir -p "${lib_ext_dir}"
+fi
+
+if [ -f "${env_file}" ]; then
+  source "${env_file}"
+  env | egrep "^SIGARZ"
+else
+  set -x
+  declare -r env_template="${env_file}.template"
+  if [ -f "${env_template}" ]; then
+    cat "${env_template}" > "${env_file}"
+    echo "Please update ${env_file} and re-run"
+    exit 1
+  else
+    echo "There is no ${env_template} file to copy"
+    exit 1
+  fi
+  set +x
+fi
