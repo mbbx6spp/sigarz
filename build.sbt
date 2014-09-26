@@ -1,6 +1,6 @@
 name := "sigarz"
 
-scalaVersion := "2.11.2"
+scalaVersion := "2.11.3"
 
 libraryDependencies ++= {
   val scalazVersion = "7.1.0"
@@ -27,17 +27,4 @@ scalacOptions += "-unchecked"
 
 initialCommands in console := "import scalaz._, Scalaz._, scalaz.effect._"
 
-// TODO Make work
-//val nativeLibEnvVar = java.lang.System.getenv("SIGARZ_NATIVE_LIB_PATH")
-//
-//val defaultNativeLibDir = java.lang.System.getProperty("user.dir") + "/lib/ext"
-//
-//val nativeLibDir = if (nativeLibEnvVar != null) nativeLibEnvVar else defaultNativeLibDir
-//
-//val nativeLibPath = Seq(defaultNativeLibDir, nativeLibDir).mkString(java.io.File.pathSeparator)
-//
-//javaOptions in run += s"-Djava.library.path=${nativeLibPath}"
-//
-//javaOptions in test += s"-Djava.library.path=${nativeLibPath}"
-//
-//javaOptions in console += s"-Djava.library.path=${nativeLibPath}"
+releaseSettings
